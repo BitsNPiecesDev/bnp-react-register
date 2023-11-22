@@ -1,46 +1,165 @@
-# Getting Started with Create React App
+```markdown
+# React Register Component
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A plug-and-use React component for creating a user registration page with customizable fields.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+```bash
+npm install bnp-react-register
+```
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```jsx
+import React from 'react';
+import { Register, FieldType, FieldConfig, Validator } from 'bnp-react-register';
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+// Custom validator function
+const isValidCustomField = (value: string) => {
+  // Your custom validation logic here
+  return value.length >= 8;
+};
 
-### `npm test`
+const YourRegisterPage = () => {
+  return (
+    <Register
+      headerLabel="Create an Account"
+      fieldsToShow={[
+        {
+          id: "email",
+          field: FieldType.EMAIL,
+          label: "Email",
+          validation: {
+            validator: (email) => isEmailValid(email),
+            errorText: "Invalid email",
+          },
+        },
+        {
+          id: "password",
+          field: FieldType.PASSWORD,
+          label: "Password",
+        },
+        {
+          id: "phno",
+          field: FieldType.PHONE_NUMBER,
+          label: "Phone Number",
+        },
+        {
+          id: "addr",
+          field: FieldType.ADDRESS,
+          label: "Address",
+          type: "textarea",
+        }
+      ]}
+      registerButtonLabel="Sign Up"
+      registerButtonSize="large"
+      registerButtonColor="#4CAF50"
+      customRegisterButton={<YourCustomButton />}
+      onRegister={(data) => handleRegistration(data)}
+    />
+  );
+};
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Props
 
-### `npm run build`
+- `headerLabel`: (Optional) Custom label or JSX element for the header of the registration page.
+- `fieldsToShow`: An array of objects specifying the fields to display. Each object should have an `id` (unique identifier), `field` (field type), and optional properties like `label`, `helperText`, `validation`, `onChange`, and `type`.
+- `registerButtonLabel`: (Optional) Custom label for the registration button.
+- `registerButtonSize`: (Optional) Size of the registration button (`"small"`, `"normal"`, `"large"`).
+- `registerButtonColor`: (Optional) Custom color for the registration button.
+- `customRegisterButton`: (Optional) Custom JSX element to replace the default registration button.
+- `onRegister`: (Optional) Callback function triggered when the registration button is clicked.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Mixing and Matching Fields
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You can mix and match the `fieldsToShow` array to create your own set of fields and validations. Each object in the array corresponds to a registration field, allowing for easy customization.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Creating a Custom Register Button
 
-### `npm run eject`
+You can create your own register button by providing a custom JSX element using the `customRegisterButton` prop. This allows for complete control over the appearance and behavior of the registration button.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Example
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```jsx
+<Register
+  headerLabel="Create an Account"
+  fieldsToShow={[
+    {
+      id: "email",
+      field: FieldType.EMAIL,
+      label: "Email",
+      validation: {
+        validator: (email) => isEmailValid(email),
+        errorText: "Invalid email",
+      },
+    },
+    {
+      id: "password",
+      field: FieldType.PASSWORD,
+      label: "Password",
+    },
+    {
+      id: "phno",
+      field: FieldType.PHONE_NUMBER,
+      label: "Phone Number",
+    },
+    {
+      id: "addr",
+      field: FieldType.ADDRESS,
+      label: "Address",
+      type: "textarea",
+    },
+  ]}
+  customRegisterButton={<YourCustomButton />}
+  onRegister={(data) => handleRegistration(data)}
+/>
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## `FieldConfig` Interface
 
-## Learn More
+The `FieldConfig` interface defines the structure for configuring a field in the registration component:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```typescript
+export interface FieldConfig {
+  id: string;
+  field: FieldType;
+  label?: string | React.JSX.Element;
+  helperText?: string | React.JSX.Element;
+  validation?: Validator;
+  onChange?: (arg: { field: string; value: string }) => any;
+  type?: "text" | "password" | "tel" | "textarea" | "number";
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## `Validator` Interface
+
+The `Validator` interface defines the structure for a validation function:
+
+```typescript
+export interface Validator {
+  validator: (value: string) => boolean;
+  errorText?: string;
+}
+```
+
+## `FieldType` Enum
+
+The `FieldType` enum defines the types of fields available for configuration:
+
+```typescript
+export enum FieldType {
+  NAME = "Name",
+  PASSWORD = "Password",
+  PHONE_NUMBER = "Phone Number",
+  ADDRESS = "Address",
+  EMAIL = "Email",
+}
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+```

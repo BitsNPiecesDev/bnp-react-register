@@ -31,19 +31,3 @@ function App() {
 }
 
 export default App;
-
-
-/*
-
-{
-  id: "email",
-  field: FieldType.EMAIL,
-  label: "Email",
-  validation: {
-    validator: (email: string) => true,
-    errorText: "Invalid email or something",
-  },
-  onChange: (data: any) => {
-    console.log("App chnage");
-  },
-} */

@@ -15,7 +15,6 @@ import { FieldConfig } from "../models/field-config";
 const Register = (props: RegisterProps) => {
   const [fieldsValues, saveFieldValues] = React.useState({});
   const handleRegister = () => {
-    console.log(fieldsValues);
     if (props.onRegister) props.onRegister(fieldsValues);
   };
 
@@ -24,7 +23,6 @@ const Register = (props: RegisterProps) => {
     data: any,
     fieldsOnChange?: (arg: any) => any
   ) => {
-    console.log(data);
     saveFieldValues((currentValue) => ({
       ...currentValue,
       [id]: data.value,
@@ -76,6 +74,7 @@ const Register = (props: RegisterProps) => {
           onChange(fieldConfig.id, data, fieldConfig?.onChange);
         }}
         {...additionalProps}
+        size={fieldConfig.size}
       />
     );
   };

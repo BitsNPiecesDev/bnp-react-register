@@ -25,8 +25,6 @@ export default function BnpTextInput(props: FieldConfig & TextFieldProps) {
     }
   }
 
-  console.log(error);
-
   return (
     <TextField
       id={props.id}
