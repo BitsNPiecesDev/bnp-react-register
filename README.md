@@ -1,4 +1,3 @@
-```markdown
 # React Register Component
 
 A plug-and-use React component for creating a user registration page with customizable fields.
@@ -54,7 +53,6 @@ const YourRegisterPage = () => {
       ]}
       registerButtonLabel="Sign Up"
       registerButtonSize="large"
-      registerButtonColor="#4CAF50"
       customRegisterButton={<YourCustomButton />}
       onRegister={(data) => handleRegistration(data)}
     />
@@ -68,7 +66,6 @@ const YourRegisterPage = () => {
 - `fieldsToShow`: An array of objects specifying the fields to display. Each object should have an `id` (unique identifier), `field` (field type), and optional properties like `label`, `helperText`, `validation`, `onChange`, and `type`.
 - `registerButtonLabel`: (Optional) Custom label for the registration button.
 - `registerButtonSize`: (Optional) Size of the registration button (`"small"`, `"normal"`, `"large"`).
-- `registerButtonColor`: (Optional) Custom color for the registration button.
 - `customRegisterButton`: (Optional) Custom JSX element to replace the default registration button.
 - `onRegister`: (Optional) Callback function triggered when the registration button is clicked.
 
