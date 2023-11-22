@@ -53,7 +53,6 @@ const YourRegisterPage = () => {
       ]}
       registerButtonLabel="Sign Up"
       registerButtonSize="large"
-      customRegisterButton={<YourCustomButton />}
       onRegister={(data) => handleRegistration(data)}
     />
   );
