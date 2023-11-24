@@ -178,6 +178,7 @@ export interface FieldConfig {
   validation?: Validator;
   onChange?: (arg: { field: string; value: string }) => any;
   type?: "text" | "password" | "tel" | "textarea" | "number";
+  element?: React.JSX.Element;
 }
 ```
 
@@ -200,9 +201,10 @@ The `FieldType` enum defines the types of fields available for configuration:
 export enum FieldType {
   NAME = "Name",
   PASSWORD = "Password",
-  PHONE_NUMBER = "Phone Number",
+  PHONE_NUMBER = "Phone number",
   ADDRESS = "Address",
   EMAIL = "Email",
+  CUSTOM = "CUSTOM",
 }
 ```
 
