@@ -9,4 +9,5 @@ export interface FieldConfig {
   validation?: Validator;
   onChange?: (arg: { field: string; value: string }) => any;
   type?: "text" | "password" | "tel" | "textarea" | "number";
+  element?: React.JSX.Element;
 }

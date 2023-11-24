@@ -54,6 +54,9 @@ const Register = (props: RegisterProps) => {
         additionalProps.rows = 4;
         break;
 
+      case FieldType.CUSTOM:
+        return fieldConfig.element;
+
       default:
         break;
     }
@@ -63,12 +66,7 @@ const Register = (props: RegisterProps) => {
         id={fieldConfig.id}
         field={fieldConfig.field}
         label={fieldConfig.label ?? fieldConfig?.field}
-        validation={
-          fieldConfig.validation ?? {
-            validator: (_: string) => true,
-            errorText: "",
-          }
-        }
+        validation={fieldConfig.validation}
         onChange={(data: any) => {
           onChange(fieldConfig.id, data, fieldConfig?.onChange);
         }}

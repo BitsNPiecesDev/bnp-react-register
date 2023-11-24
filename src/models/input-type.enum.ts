@@ -4,4 +4,5 @@ export enum FieldType {
   PHONE_NUMBER = "Phone number",
   ADDRESS = "Address",
   EMAIL = "Email",
+  CUSTOM = "CUSTOM",
 }

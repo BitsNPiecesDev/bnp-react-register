@@ -12,7 +12,6 @@ function App() {
           id: "email",
           field: FieldType.EMAIL,
         },
-
         {
           id: "passwordd",
           field: FieldType.PASSWORD,
@@ -20,6 +19,15 @@ function App() {
         {
           id: "phno",
           field: FieldType.PHONE_NUMBER,
+        },
+        {
+          id: "role",
+          field: FieldType.CUSTOM,
+          element: (
+            <div>
+              <input placeholder="Custom field" />
+            </div>
+          ),
         },
         {
           id: "addr",

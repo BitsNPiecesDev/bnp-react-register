@@ -72,6 +72,57 @@ const YourRegisterPage = () => {
 
 You can mix and match the `fieldsToShow` array to create your own set of fields and validations. Each object in the array corresponds to a registration field, allowing for easy customization.
 
+## Custom fields
+You can also add your own custom fields along with the predefined fields. Just use the FieldType.CUSTOM and provide you custom field component as the element property.
+
+**Note: When using custom fields the onRegister, onChange will not have the data for the custom field, hence the handling of custom field is needed to be done manually**
+
+## Example
+
+```jsx
+<Register
+  headerLabel="Create an Account"
+  fieldsToShow={[
+    {
+      id: "email",
+      field: FieldType.EMAIL,
+      label: "Email",
+      validation: {
+        validator: (email) => isEmailValid(email),
+        errorText: "Invalid email",
+      },
+    },
+    {
+      id: "password",
+      field: FieldType.PASSWORD,
+      label: "Password",
+    },
+    {
+      id: "phno",
+      field: FieldType.PHONE_NUMBER,
+      label: "Phone Number",
+    },
+    {
+      id: "role",
+      field: FieldType.CUSTOM,
+      element: (
+            <div>
+              <input placeholder="Custom field" />
+            </div>
+        ),
+      },
+    {
+      id: "addr",
+      field: FieldType.ADDRESS,
+      label: "Address",
+      type: "textarea",
+    },
+  ]}
+  onRegister={(data) => handleRegistration(data)}
+/>
+```
+
+
 ## Creating a Custom Register Button
 
 You can create your own register button by providing a custom JSX element using the `customRegisterButton` prop. This allows for complete control over the appearance and behavior of the registration button.
